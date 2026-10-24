@@ -1,0 +1,3 @@
+# Hand-aligned reference tables (one record per line); formatting them would
+# explode every entry over several lines.
+src/features/*/data/

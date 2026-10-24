@@ -1,0 +1,175 @@
+import { Macros } from '../../../core/macros';
+import { L as n } from '../../../shared/i18n/types';
+import { FoodProduct } from '../domain/foods';
+
+const p = (kcal: number, protein: number, fat: number, carbs: number): Macros => ({
+  kcal,
+  protein,
+  fat,
+  carbs,
+});
+
+export const builtinFoods: FoodProduct[] = [
+  { id: 'milk_prostokvashino', name: n('Milk 2.5%', 'Молоко 2.5%'), brand: 'Простоквашино', per100: p(53, 2.9, 2.5, 4.7) },
+  { id: 'milk_domik', name: n('Milk 3.2%', 'Молоко 3.2%'), brand: 'Домик в деревне', per100: p(59, 2.9, 3.2, 4.7) },
+  { id: 'milk_parmalat', name: n('Milk 1.5%', 'Молоко 1.5%'), brand: 'Parmalat', per100: p(44, 2.9, 1.5, 4.8) },
+  { id: 'milk_avida', name: n('Milk 3.2%', 'Молоко 3.2%'), brand: 'Авида', per100: p(60, 2.8, 3.2, 4.8) },
+
+  { id: 'kefir_prostokvashino', name: n('Kefir 2.5%', 'Кефир 2.5%'), brand: 'Простоквашино', per100: p(53, 2.9, 2.5, 4) },
+  { id: 'yogurt_activia', name: n('Natural yogurt', 'Йогурт натуральный'), brand: 'Активиа', per100: p(75, 4, 3.5, 6.5) },
+  { id: 'yogurt_epica', name: n('Greek yogurt', 'Йогурт греческий'), brand: 'Epica', per100: p(71, 4.7, 2.9, 5.4) },
+  { id: 'yogurt_chudo', name: n('Strawberry yogurt', 'Йогурт клубника'), brand: 'Чудо', per100: p(85, 2.8, 2.5, 13.5) },
+
+  { id: 'cottage_prostokvashino', name: n('Cottage cheese 5%', 'Творог 5%'), brand: 'Простоквашино', per100: p(121, 16, 5, 3) },
+  { id: 'cottage_domik', name: n('Cottage cheese 9%', 'Творог 9%'), brand: 'Домик в деревне', per100: p(169, 16, 9, 3) },
+  { id: 'cottage_savushkin', name: n('Cottage cheese 0%', 'Творог 0%'), brand: 'Савушкин', per100: p(88, 18, 0.6, 1.8) },
+
+  { id: 'smetana_prostokvashino', name: n('Sour cream 15%', 'Сметана 15%'), brand: 'Простоквашино', per100: p(162, 2.6, 15, 3.6) },
+  { id: 'smetana_domik', name: n('Sour cream 20%', 'Сметана 20%'), brand: 'Домик в деревне', per100: p(204, 2.5, 20, 3.4) },
+
+  { id: 'cheese_rossiysky', name: n('Russian cheese 50%', 'Сыр Российский 50%'), brand: 'Ламбер', per100: p(364, 23, 30, 0) },
+  { id: 'cheese_hochland', name: n('Processed cheese', 'Сыр плавленый'), brand: 'Hochland', per100: p(240, 11, 20, 4) },
+  { id: 'cheese_adygei', name: n('Adyghe cheese', 'Сыр Адыгейский'), brand: 'Умалат', per100: p(240, 18, 18, 1.5) },
+
+  { id: 'butter_825', name: n('Butter 82.5%', 'Масло сливочное 82.5%'), brand: 'Простоквашино', per100: p(748, 0.5, 82.5, 0.8) },
+  { id: 'oil_olive', name: n('Olive oil', 'Масло оливковое'), brand: 'Monini', per100: p(884, 0, 99.8, 0) },
+
+  { id: 'bread_borodinsky', name: n('Borodinsky bread', 'Хлеб Бородинский'), brand: 'Коломенское', per100: p(208, 6.8, 1.3, 40) },
+  { id: 'bread_baton', name: n('White loaf', 'Батон нарезной'), brand: 'Коломенское', per100: p(264, 7.5, 2.9, 50.9) },
+  { id: 'bread_whole', name: n('Wholegrain bread', 'Хлеб цельнозерновой'), brand: 'Harrys', per100: p(230, 9, 3, 43) },
+
+  { id: 'egg', name: n('Chicken egg', 'Яйцо куриное'), brand: 'Floreni', per100: p(157, 12.7, 11.5, 0.7) },
+  { id: 'chicken_breast', name: n('Chicken breast', 'Куриная грудка'), brand: 'Петелинка', per100: p(113, 23.6, 1.9, 0.4) },
+  { id: 'chicken_thigh', name: n('Chicken thigh', 'Куриное бедро'), brand: 'Приосколье', per100: p(185, 16.8, 13, 0) },
+  { id: 'beef', name: n('Beef', 'Говядина'), brand: 'Мираторг', per100: p(187, 18.9, 12.4, 0) },
+  { id: 'pork', name: n('Pork', 'Свинина'), brand: 'Мираторг', per100: p(259, 16, 21.6, 0) },
+  { id: 'salmon', name: n('Salmon', 'Лосось'), brand: 'Санта Бремор', per100: p(208, 20, 13, 0) },
+  { id: 'tuna_can', name: n('Canned tuna', 'Тунец консервированный'), brand: 'Дядя Ваня', per100: p(96, 22, 1, 0) },
+  { id: 'shrimp', name: n('Shrimp', 'Креветки'), brand: 'Vici', per100: p(99, 24, 0.3, 0.2) },
+
+  { id: 'rice_dry', name: n('White rice (dry)', 'Рис белый (сухой)'), brand: 'Мистраль', per100: p(344, 6.7, 0.7, 78) },
+  { id: 'buckwheat_dry', name: n('Buckwheat (dry)', 'Гречка (сухая)'), brand: 'Увелка', per100: p(343, 12.6, 3.3, 62) },
+  { id: 'oats_dry', name: n('Oats (dry)', 'Овсянка (сухая)'), brand: 'Геркулес', per100: p(366, 11.9, 7.2, 69) },
+  { id: 'pasta_dry', name: n('Pasta (dry)', 'Макароны (сухие)'), brand: 'Макфа', per100: p(344, 10.4, 1.1, 71) },
+
+  { id: 'peanut_butter', name: n('Peanut butter', 'Арахисовая паста'), brand: 'Royal Forest', per100: p(588, 25, 50, 20) },
+  { id: 'walnut', name: n('Walnuts', 'Грецкий орех'), brand: 'Seeberger', per100: p(654, 15, 65, 7) },
+  { id: 'choco_milk', name: n('Milk chocolate', 'Шоколад молочный'), brand: 'Alpen Gold', per100: p(535, 7.7, 30, 52) },
+  { id: 'honey', name: n('Honey', 'Мёд'), brand: 'Медовый Дом', per100: p(329, 0.8, 0, 81) },
+  { id: 'juice_orange', name: n('Orange juice', 'Сок апельсиновый'), brand: 'Добрый', per100: p(47, 0.7, 0.1, 11) },
+  { id: 'cola', name: n('Cola', 'Кола'), brand: 'Coca-Cola', per100: p(42, 0, 0, 10.6) },
+
+  { id: 'milk_jlc', name: n('Milk 2.5%', 'Молоко 2.5%'), brand: 'JLC', per100: p(53, 2.9, 2.5, 4.7) },
+  { id: 'milk_incomlac', name: n('Milk 3.2%', 'Молоко 3.2%'), brand: 'Incomlac', per100: p(59, 2.9, 3.2, 4.7) },
+  { id: 'milk_lactis', name: n('Milk 2.5%', 'Молоко 2.5%'), brand: 'Lactis', per100: p(53, 2.9, 2.5, 4.7) },
+  { id: 'yogurt_jlc', name: n('Natural yogurt', 'Йогурт натуральный'), brand: 'JLC', per100: p(60, 3.3, 2.5, 5.5) },
+  { id: 'smetana_jlc', name: n('Sour cream 15%', 'Сметана 15%'), brand: 'JLC', per100: p(162, 2.6, 15, 3.6) },
+  { id: 'cottage_jlc', name: n('Cottage cheese 5%', 'Брынза де вакь 5%'), brand: 'JLC', per100: p(121, 16, 5, 3) },
+  { id: 'cheese_jlc', name: n('Brânză cheese', 'Брынза'), brand: 'JLC', per100: p(260, 17, 20, 2) },
+  { id: 'bread_franzeluta', name: n('White loaf', 'Батон'), brand: 'Franzeluța', per100: p(260, 7.6, 2.8, 51) },
+  { id: 'choco_bucuria', name: n('Milk chocolate', 'Шоколад молочный'), brand: 'Bucuria', per100: p(540, 7, 32, 55) },
+  { id: 'sweets_bucuria', name: n('Assorted sweets', 'Конфеты ассорти'), brand: 'Bucuria', per100: p(480, 4, 20, 70) },
+  { id: 'juice_orhei', name: n('Apple juice', 'Сок яблочный'), brand: 'Orhei-Vit', per100: p(46, 0.5, 0, 11) },
+  { id: 'juice_maurt', name: n('Multifruit juice', 'Сок мультифрукт'), brand: 'Maurt', per100: p(47, 0.5, 0, 11.5) },
+  { id: 'sausage_rogob', name: n('Boiled sausage', 'Колбаса варёная'), brand: 'Rogob', per100: p(257, 11, 23, 1) },
+  { id: 'sausage_carmez', name: n('Sausages', 'Сосиски'), brand: 'Carmez', per100: p(266, 10, 24, 2) },
+  { id: 'peas_naturbravo', name: n('Green peas', 'Горошек зелёный'), brand: 'Natur Bravo', per100: p(58, 3.6, 0.2, 9.8) },
+
+  { id: 'alpro_soy', name: n('Soy milk', 'Соевое молоко'), brand: 'Alpro', per100: p(33, 3, 1.8, 0.4) },
+  { id: 'alpro_soy_nosugar', name: n('Soy milk, no sugar', 'Соевое молоко без сахара'), brand: 'Alpro', per100: p(28, 3.3, 1.8, 0) },
+  { id: 'alpro_almond_nosugar', name: n('Almond milk, no sugar', 'Миндальное молоко без сахара'), brand: 'Alpro', per100: p(13, 0.4, 1.1, 0) },
+  { id: 'alpro_almond', name: n('Almond milk', 'Миндальное молоко'), brand: 'Alpro', per100: p(24, 0.5, 1.1, 3) },
+  { id: 'alpro_oat', name: n('Oat milk', 'Овсяное молоко'), brand: 'Alpro', per100: p(45, 0.3, 1.5, 6.7) },
+  { id: 'alpro_coconut_nosugar', name: n('Coconut milk, no sugar', 'Кокосовое молоко без сахара'), brand: 'Alpro', per100: p(13, 0.1, 1.1, 0) },
+  { id: 'alpro_coconut', name: n('Coconut milk', 'Кокосовое молоко'), brand: 'Alpro', per100: p(20, 0.1, 0.9, 2.7) },
+  { id: 'alpro_yog_natural', name: n('Soy yogurt, natural', 'Соевый йогурт натуральный'), brand: 'Alpro', per100: p(50, 4, 2.3, 2.5) },
+  { id: 'alpro_yog_vanilla', name: n('Soy yogurt, vanilla', 'Соевый йогурт ванильный'), brand: 'Alpro', per100: p(75, 3.9, 2.1, 9.5) },
+  { id: 'alpro_yog_blueberry', name: n('Soy yogurt, blueberry', 'Соевый йогурт черника'), brand: 'Alpro', per100: p(79, 3.7, 1.9, 11) },
+
+  { id: 'orasi_oat', name: n('Oat milk', 'Овсяное молоко'), brand: 'Orasi', per100: p(43, 0.4, 1, 8) },
+  { id: 'orasi_rice', name: n('Rice milk', 'Рисовое молоко'), brand: 'Orasi', per100: p(47, 0.1, 1, 9.6) },
+  { id: 'orasi_almond', name: n('Almond milk, no sugar', 'Миндальное молоко без сахара'), brand: 'Orasi', per100: p(14, 0.5, 1.1, 0.2) },
+
+  { id: 'chikalab_choco_milk', name: n('Protein chocolate, milk', 'Протеиновый шоколад молочный'), brand: 'Chikalab', per100: p(380, 30, 18, 30) },
+  { id: 'chikalab_choco_dark', name: n('Protein chocolate, dark', 'Протеиновый шоколад тёмный'), brand: 'Chikalab', per100: p(390, 28, 22, 24) },
+  { id: 'chikalab_paste_choco', name: n('Protein paste, chocolate', 'Протеиновая паста шоколадная'), brand: 'Chikalab', per100: p(300, 20, 18, 20) },
+  { id: 'chikalab_paste_hazelnut', name: n('Protein paste, hazelnut', 'Протеиновая паста фундучная'), brand: 'Chikalab', per100: p(320, 19, 20, 22) },
+  { id: 'chikalab_cookie', name: n('Protein cookie, chocolate', 'Протеиновое печенье шоколадное'), brand: 'Chikalab', per100: p(350, 25, 12, 30) },
+  { id: 'chikalab_chips', name: n('Protein chips, paprika', 'Протеиновые чипсы паприка'), brand: 'Chikalab', per100: p(380, 30, 10, 40) },
+
+  { id: 'chikabar_choco', name: n('Protein bar, double chocolate', 'Протеиновый батончик «двойной шоколад»'), brand: 'Chikalab', per100: p(360, 21, 12, 38) },
+  { id: 'chikabar_coconut', name: n('Protein bar, coconut', 'Протеиновый батончик «кокос»'), brand: 'Chikalab', per100: p(350, 20, 13, 36) },
+  { id: 'chikabar_peanut', name: n('Protein bar, peanut caramel', 'Протеиновый батончик «арахис-карамель»'), brand: 'Chikalab', per100: p(370, 22, 14, 35) },
+  { id: 'chikabar_cookies', name: n('Protein bar, cookies & cream', 'Протеиновый батончик «печенье-крем»'), brand: 'Chikalab', per100: p(355, 21, 11, 40) },
+
+  { id: 'bombbar_brownie', name: n('Protein bar, chocolate brownie', 'Протеиновый батончик «шоколадный брауни»'), brand: 'Bombbar', per100: p(350, 30, 12, 30) },
+  { id: 'bombbar_strawberry', name: n('Protein bar, strawberry', 'Протеиновый батончик «клубника»'), brand: 'Bombbar', per100: p(345, 29, 11, 33) },
+  { id: 'bombbar_peanut', name: n('Protein bar, chocolate-peanut', 'Протеиновый батончик «шоколад-арахис»'), brand: 'Bombbar', per100: p(360, 28, 14, 30) },
+
+  { id: 'spacebite_choco', name: n('Protein bar, chocolate', 'Протеиновый батончик «шоколад»'), brand: 'Space Bite', per100: p(350, 20, 14, 38) },
+  { id: 'spacebite_coconut', name: n('Protein bar, coconut', 'Протеиновый батончик «кокос»'), brand: 'Space Bite', per100: p(345, 19, 15, 36) },
+
+  { id: 'axedum_choco', name: n('Protein bar, chocolate', 'Протеиновый батончик «шоколад»'), brand: 'Axedum', per100: p(340, 22, 12, 34) },
+
+  { id: 'barilla_pasta', name: n('Pasta (dry)', 'Паста (сухая)'), brand: 'Barilla', per100: p(359, 12, 2, 71.2) },
+  { id: 'barilla_pesto', name: n('Pesto sauce', 'Соус песто'), brand: 'Barilla', per100: p(450, 4, 45, 6) },
+  { id: 'barilla_bolognese', name: n('Bolognese sauce', 'Соус болоньезе'), brand: 'Barilla', per100: p(70, 3, 4, 5) },
+
+  { id: 'george_coffee', name: n('Black coffee', 'Кофе чёрный'), brand: 'George Standart', per100: p(2, 0.1, 0, 0.3) },
+  { id: 'george_tea', name: n('Black tea', 'Чай чёрный'), brand: 'George Standart', per100: p(1, 0, 0, 0.3) },
+
+  { id: 'nutella', name: n('Hazelnut spread', 'Шоколадная паста'), brand: 'Nutella', per100: p(539, 6.3, 30.9, 57.5) },
+  { id: 'philadelphia', name: n('Cream cheese', 'Сыр творожный'), brand: 'Philadelphia', per100: p(253, 5.4, 24, 4) },
+  { id: 'almette', name: n('Cream cheese', 'Сыр творожный'), brand: 'Almette', per100: p(253, 7, 24, 3) },
+  { id: 'danissimo', name: n('Curd dessert', 'Творожок'), brand: 'Даниссимо', per100: p(230, 6, 12, 25) },
+  { id: 'rastishka', name: n('Curd dessert', 'Творожок'), brand: 'Растишка', per100: p(96, 4, 3, 12.5) },
+  { id: 'teos', name: n('Greek yogurt', 'Греческий йогурт'), brand: 'Teos', per100: p(96, 5.8, 5, 6.4) },
+  { id: 'actimel', name: n('Drinkable yogurt', 'Питьевой йогурт'), brand: 'Actimel', per100: p(71, 2.7, 1.5, 11.5) },
+
+  { id: 'doctorskaya', name: n("Doctor's sausage", 'Колбаса Докторская'), brand: 'Останкино', per100: p(257, 12.8, 22.2, 1.5) },
+  { id: 'ham', name: n('Ham', 'Ветчина'), brand: 'Дымов', per100: p(113, 18, 4, 2) },
+  { id: 'turkey_breast', name: n('Turkey breast', 'Грудка индейки'), brand: 'Индилайт', per100: p(84, 19, 1, 0) },
+
+  { id: 'crispbread', name: n('Crispbread', 'Хлебцы'), brand: 'Dr. Körner', per100: p(300, 10, 4, 57) },
+  { id: 'granola', name: n('Granola', 'Гранола'), brand: 'Bjorg', per100: p(420, 9, 12, 68) },
+  { id: 'peanuts', name: n('Peanuts', 'Арахис'), brand: 'Seeberger', per100: p(567, 26, 49, 16) },
+  { id: 'almonds', name: n('Almonds', 'Миндаль'), brand: 'Seeberger', per100: p(579, 21, 49, 22) },
+  { id: 'whey', name: n('Whey protein', 'Сывороточный протеин'), brand: 'Optimum Nutrition', per100: p(380, 75, 7, 8) },
+  { id: 'snickers', name: n('Snickers', 'Сникерс'), brand: 'Snickers', per100: p(507, 9.3, 24.9, 59) },
+  { id: 'rice_national', name: n('White rice (dry)', 'Рис белый (сухой)'), brand: 'Националь', per100: p(344, 6.7, 0.7, 78) },
+
+  { id: 'axedum_salami', name: n('Salami', 'Колбаса салями'), brand: 'Axedum', per100: p(472, 21, 42, 1) },
+  { id: 'axedum_servelat', name: n('Servelat sausage', 'Сервелат'), brand: 'Axedum', per100: p(420, 17, 38, 1) },
+  { id: 'axedum_sausages', name: n('Sausages', 'Сосиски'), brand: 'Axedum', per100: p(270, 11, 24, 2) },
+  { id: 'axedum_chicken_sausages', name: n('Chicken sausages', 'Куриные сосиски'), brand: 'Axedum', per100: p(220, 12, 18, 2) },
+  { id: 'axedum_ham', name: n('Ham', 'Ветчина'), brand: 'Axedum', per100: p(121, 17, 5, 2) },
+  { id: 'axedum_pelmeni', name: n('Pelmeni (meat dumplings)', 'Пельмени'), brand: 'Axedum', per100: p(248, 11, 12, 24) },
+  { id: 'axedum_mince', name: n('Ground meat', 'Фарш мясной'), brand: 'Axedum', per100: p(220, 17, 17, 0) },
+
+  { id: 'george_coffee_ground', name: n('Ground coffee', 'Кофе молотый'), brand: 'George Standart', per100: p(2, 0.1, 0, 0.3) },
+  { id: 'george_coffee_instant', name: n('Instant coffee', 'Кофе растворимый'), brand: 'George Standart', per100: p(2, 0.2, 0, 0.3) },
+  { id: 'george_coffee_3in1', name: n('Coffee 3-in-1', 'Кофе 3в1'), brand: 'George Standart', per100: p(450, 5, 12, 78) },
+  { id: 'george_green_tea', name: n('Green tea', 'Чай зелёный'), brand: 'George Standart', per100: p(1, 0, 0, 0.2) },
+
+  { id: 'philadelphia_light', name: n('Cream cheese, light', 'Сыр творожный лёгкий'), brand: 'Philadelphia', per100: p(160, 6.5, 13, 4) },
+  { id: 'philadelphia_herbs', name: n('Cream cheese with herbs', 'Сыр творожный с зеленью'), brand: 'Philadelphia', per100: p(250, 5.4, 23, 4.5) },
+
+  { id: 'kauf_milk', name: n('Milk 3.5%', 'Молоко 3.5%'), brand: 'Kaufland', per100: p(64, 3.4, 3.5, 4.8) },
+  { id: 'kauf_yogurt', name: n('Natural yogurt', 'Йогурт натуральный'), brand: 'Kaufland', per100: p(60, 3.5, 3.2, 4.5) },
+  { id: 'kauf_butter', name: n('Butter 82%', 'Масло сливочное 82%'), brand: 'Kaufland', per100: p(744, 0.7, 82, 0.7) },
+  { id: 'kauf_chicken_fillet', name: n('Chicken fillet', 'Куриное филе'), brand: 'Kaufland', per100: p(110, 23, 2, 0) },
+  { id: 'kauf_oats', name: n('Oat flakes', 'Овсяные хлопья'), brand: 'Kaufland', per100: p(370, 13, 7, 60) },
+  { id: 'kauf_rice', name: n('White rice (dry)', 'Рис белый (сухой)'), brand: 'Kaufland', per100: p(344, 6.7, 0.7, 78) },
+  { id: 'kauf_eggs', name: n('Chicken egg', 'Яйцо куриное'), brand: 'Kaufland', per100: p(143, 12.6, 9.5, 0.7) },
+
+  { id: 'sincer_milk', name: n('Milk 2.5%', 'Молоко 2.5%'), brand: 'Sîncer', per100: p(53, 2.9, 2.5, 4.7) },
+  { id: 'sincer_kefir', name: n('Kefir 2.5%', 'Кефир 2.5%'), brand: 'Sîncer', per100: p(53, 2.9, 2.5, 4) },
+  { id: 'sincer_smetana', name: n('Sour cream 20%', 'Сметана 20%'), brand: 'Sîncer', per100: p(204, 2.5, 20, 3.4) },
+  { id: 'sincer_cottage', name: n('Cottage cheese 5%', 'Творог 5%'), brand: 'Sîncer', per100: p(121, 16, 5, 3) },
+  { id: 'sincer_brynza', name: n('Brânză cheese', 'Брынза'), brand: 'Sîncer', per100: p(260, 17, 20, 2) },
+
+  { id: 'banana', name: n('Banana', 'Банан'), brand: '', per100: p(96, 1.5, 0.2, 21) },
+  { id: 'apple', name: n('Apple', 'Яблоко'), brand: '', per100: p(47, 0.4, 0.4, 9.8) },
+  { id: 'cucumber', name: n('Cucumber', 'Огурец'), brand: '', per100: p(15, 0.8, 0.1, 2.8) },
+  { id: 'tomato', name: n('Tomato', 'Помидор'), brand: '', per100: p(20, 0.9, 0.2, 3.9) },
+];

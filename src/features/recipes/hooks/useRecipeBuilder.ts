@@ -7,8 +7,6 @@ import { Recipe } from '../data/recipes';
 import { buildPlan } from '../domain/match';
 import { customServing, isIncluded } from '../domain/serving';
 
-// State of the recipe detail screen: which ingredients the user keeps, which
-// brands they picked, and the resulting per-serving macros.
 export function useRecipeBuilder(recipe: Recipe, have: Set<string>) {
   const plan = useMemo(() => buildPlan(recipe, have), [recipe, have]);
   const removed = useToggleSet<number>();
@@ -30,7 +28,6 @@ export function useRecipeBuilder(recipe: Recipe, have: Set<string>) {
     return customServing(plan, removed.set, brandPer100);
   }, [plan, removed.set, brands]);
 
-  // Logged with a per-100g basis so it can be re-weighed in the diary.
   const diarySource = useMemo<FoodSource | undefined>(
     () =>
       serving.grams > 0

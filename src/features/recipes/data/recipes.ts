@@ -5,8 +5,6 @@ export interface RecipeIngredient {
   amount: LocalizedText;
   g: number;
   opt?: boolean;
-  // The defining ingredient of the dish — never substituted (a salmon recipe
-  // stays salmon). If unset, the first required ingredient is treated as main.
   main?: boolean;
 }
 

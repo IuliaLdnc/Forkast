@@ -10,8 +10,6 @@ import { useFoodSearch } from '../hooks/useFoodSearch';
 import { EMPTY_MACRO_DRAFT, MacroDraft, MacroInputs, parseMacroDraft } from './MacroInputs';
 import { FoodSearchResults, ManualEntryButton } from './FoodSearchResults';
 
-// Lets the user pick the exact product (brand) used for a recipe ingredient,
-// so the recipe's macros follow that product's label. `null` resets it.
 export function BrandPickerModal({
   visible,
   title,

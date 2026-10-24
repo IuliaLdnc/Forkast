@@ -16,8 +16,6 @@ const num = (v: unknown): number => {
   return Number.isFinite(x) ? Math.round(x * 10) / 10 : 0;
 };
 
-// Maps an Open Food Facts product to ours; products without a name or a
-// positive calorie value are skipped.
 export function toFoodProduct(prod: OffProduct): FoodProduct | null {
   const name = String(prod.product_name ?? '').trim();
   const nutr = prod.nutriments ?? {};
@@ -38,8 +36,6 @@ export function toFoodProduct(prod: OffProduct): FoodProduct | null {
   };
 }
 
-// Searches the Open Food Facts catalogue. Network errors yield no results:
-// online search only supplements the local catalogue.
 export async function searchOnline(query: string, limit = 15): Promise<FoodProduct[]> {
   const q = query.trim();
   if (q.length < 2) return [];
@@ -47,7 +43,6 @@ export async function searchOnline(query: string, limit = 15): Promise<FoodProdu
     `${SEARCH_URL}?search_terms=${encodeURIComponent(q)}` +
     `&search_simple=1&action=process&json=1&page_size=${limit}` +
     '&fields=code,product_name,brands,nutriments';
-  // Without a timeout a stalled connection would keep "Searching…" forever.
   const controller = new AbortController();
   const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
   try {

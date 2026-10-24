@@ -26,8 +26,6 @@ import {
 
 type Basis = 'per100' | 'portion';
 
-// Step 1b: describe a product that wasn't found, from its nutrition label.
-// Macros can be entered per 100 g or per portion (converted to per 100 g).
 export function ManualFoodStep({
   onBack,
   onCreate,

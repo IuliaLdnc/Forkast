@@ -11,7 +11,6 @@ export interface Profile {
   weight: number;
   activity: Activity;
   goal: Goal;
-  // When true the app does not compute a target — the user just logs food.
   track?: boolean;
 }
 
@@ -34,8 +33,6 @@ const PROTEIN_PER_KG: Record<Goal, number> = {
   bulk: 2,
 };
 
-// Cutting macros are set directly per kg of body weight, not derived from
-// a calorie share: 2.2 g protein, 0.8 g fat and 1.5 g carbs per kg.
 const CUT_PER_KG = { protein: 2.2, fat: 0.8, carbs: 1.5 };
 
 const FAT_KCAL_SHARE = 0.25;

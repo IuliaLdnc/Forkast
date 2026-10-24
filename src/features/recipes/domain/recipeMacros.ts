@@ -5,12 +5,9 @@ import { RecipePlan } from './match';
 export interface MacroItem {
   id: string;
   g: number;
-  // Optional per-100g override (e.g. a specific brand the user picked).
-  // When set, it is used instead of the generic nutrition table.
   per100?: Macros;
 }
 
-// Macros of one serving made from `items` (total ÷ servings, rounded).
 export function macrosFor(items: MacroItem[], servings: number): Macros {
   let kcal = 0;
   let protein = 0;
@@ -36,7 +33,6 @@ export function macrosFor(items: MacroItem[], servings: number): Macros {
   };
 }
 
-// Per-serving macros of a plan with its default ingredient selection.
 export function planMacros(plan: RecipePlan): Macros {
   return macrosFor(
     plan.items.filter(i => i.included).map(i => ({ id: i.effectiveId, g: i.ingredient.g })),

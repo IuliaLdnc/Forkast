@@ -1,6 +1,5 @@
 import { Macros } from '../../../core/macros';
 
-// Generic per-100g values for every ingredient id, used for recipe macros.
 export const nutrition: Record<string, Macros> = {
   tomato: { kcal: 18, protein: 0.9, fat: 0.2, carbs: 3.9 },
   cucumber: { kcal: 15, protein: 0.7, fat: 0.1, carbs: 3.6 },

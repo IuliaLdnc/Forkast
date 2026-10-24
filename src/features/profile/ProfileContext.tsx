@@ -5,9 +5,7 @@ import { Profile, targetsFor } from './domain/targets';
 
 interface ProfileContextValue {
   profile: Profile | null;
-  // The calorie counter is unlocked once the user has filled in a profile.
   isActivated: boolean;
-  // Daily targets; null until activated or in "just track" mode.
   target: Macros | null;
   save: (profile: Profile) => void;
 }

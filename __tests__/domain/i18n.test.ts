@@ -31,7 +31,6 @@ describe('numberInput', () => {
     expect(sanitizeDecimal('12.345')).toBe('12,34');
     expect(sanitizeDecimal('1234567')).toBe('1234');
     expect(sanitizeDecimal('72,5kg', 3)).toBe('72,5');
-    // A second separator (typed or pasted) is dropped, not kept as a dot.
     expect(sanitizeDecimal('1.2.3')).toBe('1,23');
     expect(sanitizeDecimal('1,5.')).toBe('1,5');
   });

@@ -8,9 +8,7 @@ export type TranslateVars = Record<string, string | number>;
 interface LanguageContextValue {
   lang: Lang;
   setLang: (lang: Lang) => void;
-  // Translates a UI string key, filling `{name}` placeholders from `vars`.
   t: (key: UiKey, vars?: TranslateVars) => string;
-  // Picks the current language from inline localized content (recipe data).
   tx: (text: LocalizedText) => string;
 }
 

@@ -4,7 +4,6 @@ import { useLang } from '../../../shared/i18n/LanguageContext';
 import { PrimaryButton } from '../../../shared/ui/PrimaryButton';
 import { colors, font, radius, shadow, spacing } from '../../../shared/theme';
 
-// Shown on the counter tab until the user has set up a profile.
 export function ActivationPromo({ onActivate }: { onActivate: () => void }) {
   const { t } = useLang();
   return (

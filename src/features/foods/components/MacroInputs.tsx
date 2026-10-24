@@ -6,7 +6,6 @@ import { parseNumber, sanitizeDecimal } from '../../../shared/lib/numberInput';
 import { NumberField } from '../../../shared/ui/FormControls';
 import { spacing } from '../../../shared/theme';
 
-// Raw text of the four macro inputs, kept as strings while editing.
 export type MacroDraft = Record<keyof Macros, string>;
 
 export const EMPTY_MACRO_DRAFT: MacroDraft = { kcal: '', protein: '', fat: '', carbs: '' };
@@ -29,7 +28,6 @@ export function parseMacroDraft(d: MacroDraft): Macros {
   };
 }
 
-// Kcal / protein / fat / carbs inputs in one row. `shortLabels` uses P/F/C.
 export function MacroInputs({
   value,
   onChange,

@@ -2,8 +2,6 @@ import { Lang } from './types';
 
 export type PluralForm = 'one' | 'few' | 'many';
 
-// CLDR plural category for a count. English only distinguishes one/other,
-// which maps to 'one'/'many' here.
 export function pluralForm(n: number, lang: Lang): PluralForm {
   if (lang !== 'ru') return n === 1 ? 'one' : 'many';
   const mod10 = n % 10;

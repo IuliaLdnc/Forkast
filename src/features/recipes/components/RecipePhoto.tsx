@@ -3,7 +3,6 @@ import { Image, ImageStyle, StyleProp, StyleSheet, Text, View, ViewStyle } from 
 import { Recipe } from '../data/recipes';
 import { recipeImages } from '../data/recipeImages';
 
-// The recipe's photo, or its emoji on a plain background if it has none.
 export function RecipePhoto({
   recipe,
   style,

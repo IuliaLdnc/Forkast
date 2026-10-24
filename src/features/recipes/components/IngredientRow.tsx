@@ -7,15 +7,11 @@ import { FoodProduct, foodLabel } from '../../foods/domain/foods';
 import { PlannedItem } from '../domain/match';
 import { isToggleable } from '../domain/serving';
 
-// Brand override only makes sense for products with a real brand —
-// not for plain vegetables or fruit.
 export const canBrand = (id: string): boolean => {
   const cat = ingredientById[id]?.category;
   return cat !== 'veg' && cat !== 'fruit';
 };
 
-// One ingredient line on the recipe page: name (with swap note and brand
-// pill), amount, and a +/− toggle or a pantry/buy status chip.
 export function IngredientRow({
   item,
   included,

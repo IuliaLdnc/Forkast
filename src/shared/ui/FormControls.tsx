@@ -21,8 +21,6 @@ export function TextField(props: TextInputProps) {
   );
 }
 
-// Labelled numeric input. `lg` is the profile-form style, `sm` the compact
-// one used for macro rows inside sheets.
 export function NumberField({
   label,
   value,
@@ -57,8 +55,6 @@ export function NumberField({
   );
 }
 
-// The large centered grams input shown when logging or editing a food.
-// Only whole grams are accepted, whatever the keyboard or a paste delivers.
 export function GramsInput({
   value,
   onChange,
@@ -82,7 +78,6 @@ export function GramsInput({
   );
 }
 
-// A row of equal-width options where exactly one is active.
 export function Segmented<T extends string>({
   options,
   value,
@@ -121,7 +116,6 @@ export function Segmented<T extends string>({
   );
 }
 
-// Outlined pill that highlights when selected.
 export function SelectChip({
   label,
   active,

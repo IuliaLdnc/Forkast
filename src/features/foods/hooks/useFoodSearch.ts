@@ -5,9 +5,6 @@ import { FoodProduct, mergeResults, searchFoods } from '../domain/foods';
 const DEBOUNCE_MS = 450;
 const MIN_ONLINE_QUERY = 2;
 
-// Instant local search plus a debounced Open Food Facts lookup. Online
-// results belong to the query they were fetched for: they are cleared as soon
-// as the query changes, and late responses for an old query are dropped.
 export function useFoodSearch(query: string, catalog: FoodProduct[]) {
   const [online, setOnline] = useState<FoodProduct[]>([]);
   const [loading, setLoading] = useState(false);

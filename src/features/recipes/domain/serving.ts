@@ -2,7 +2,6 @@ import { Macros } from '../../../core/macros';
 import { ItemStatus, PlannedItem, RecipePlan } from './match';
 import { macrosFor } from './recipeMacros';
 
-// Items the user has can be taken out of (or put back into) the dish.
 export const isToggleable = (status: ItemStatus) => status === 'have' || status === 'swap';
 
 export function isIncluded(item: PlannedItem, removedByUser: boolean): boolean {
@@ -12,12 +11,9 @@ export function isIncluded(item: PlannedItem, removedByUser: boolean): boolean {
 
 export interface Serving {
   macros: Macros;
-  // Weight of one serving, so a logged serving can be re-weighed later.
   grams: number;
 }
 
-// One serving as the user customised it: without removed items and with
-// per-ingredient brand overrides (keyed by item index).
 export function customServing(
   plan: RecipePlan,
   removed: Set<number>,

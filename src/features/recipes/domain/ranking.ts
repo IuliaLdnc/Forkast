@@ -8,14 +8,10 @@ export type RecipeFilter = 'all' | 'noswap' | 'fits' | Tag;
 
 export const FILTER_TAGS: Tag[] = ['highprotein', 'fast', 'veg', 'lowcal'];
 
-// Kcal headroom used by the "fits" filter: what's left today plus a small
-// tolerance, or a light-snack allowance once the budget is spent.
 const FIT_TOLERANCE = 60;
 const SPENT_BUDGET_ALLOWANCE = 250;
-// How strongly going over the remaining kcal pushes a recipe down.
 const OVERSHOOT_PENALTY = 0.2;
 
-// Orders plans by how well a serving fits the goal and today's remaining kcal.
 export function rankForGoal(plans: RecipePlan[], goal: Goal, remaining: Macros): RecipePlan[] {
   const cap = Math.max(remaining.kcal, 0);
   const score = (p: RecipePlan) => {

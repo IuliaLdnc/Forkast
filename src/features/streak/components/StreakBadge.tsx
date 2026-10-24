@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors, font, radius, spacing } from '../../../shared/theme';
 
-// 🔥 N pill; greyed out while there is no active streak.
 export function StreakBadge({ streak }: { streak: number }) {
   const active = streak > 0;
   return (

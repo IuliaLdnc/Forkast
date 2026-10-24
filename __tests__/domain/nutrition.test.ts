@@ -29,7 +29,6 @@ describe('calorieBudget', () => {
   });
 
   it('forgives an overshoot caused only by extra protein', () => {
-    // 100 kcal over, but 50 g extra protein = 200 kcal of forgiveness.
     const b = calorieBudget({ ...target, kcal: 2100, protein: 200 }, target);
     expect(b.over).toBe(false);
     expect(b.remaining).toBe(0);

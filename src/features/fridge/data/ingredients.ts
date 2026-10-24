@@ -13,7 +13,6 @@ export interface Ingredient {
   name: LocalizedText;
   emoji: string;
   category: IngredientCategory;
-  // Staples assumed to be at home (salt, oil…): never required to pick.
   pantry?: boolean;
 }
 

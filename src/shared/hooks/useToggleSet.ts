@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
 
-// A Set held in state with an immutable toggle, for multi-select UIs.
 export function useToggleSet<T>(initial?: Iterable<T>) {
   const [set, setSet] = useState<Set<T>>(() => new Set(initial));
 

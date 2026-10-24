@@ -1,5 +1,3 @@
-// Calendar-day keys in local time. The format is persisted on device, so it
-// must stay stable ("2026-10-19" would break existing streaks and diaries).
 export type DayKey = string;
 
 export function dayKey(d: Date): DayKey {

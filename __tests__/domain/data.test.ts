@@ -4,8 +4,6 @@ import { nutrition } from '../../src/features/recipes/data/nutrition';
 import { recipes } from '../../src/features/recipes/data/recipes';
 import { substitutionGroups } from '../../src/features/recipes/data/substitutions';
 
-// The catalogues reference each other by id; a typo would crash the UI
-// (e.g. RecipeCard reads ingredientById[id].name) or silently zero macros.
 describe('static data integrity', () => {
   it('has unique ids', () => {
     const unique = (ids: string[]) => expect(new Set(ids).size).toBe(ids.length);

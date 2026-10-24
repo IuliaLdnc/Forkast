@@ -2,7 +2,6 @@ import React, { createContext, useContext, useMemo } from 'react';
 import { useToggleSet } from '../../shared/hooks/useToggleSet';
 
 interface FridgeContextValue {
-  // Ingredient ids the user marked as available.
   selected: Set<string>;
   toggle: (id: string) => void;
   clear: () => void;

@@ -28,7 +28,6 @@ const DiaryContext = createContext<DiaryContextValue | undefined>(undefined);
 
 const today = () => dayKey(new Date());
 
-// A diary left over from a previous day starts the new day empty.
 const freshDay = (day: DiaryDay): DiaryDay => (day.date === today() ? day : emptyDay(today()));
 
 export function DiaryProvider({ children }: { children: React.ReactNode }) {
@@ -41,7 +40,6 @@ export function DiaryProvider({ children }: { children: React.ReactNode }) {
     },
   );
 
-  // The app may stay in memory overnight; roll over when it comes back.
   useEffect(() => {
     const sub = AppState.addEventListener('change', state => {
       if (state === 'active') setDay(freshDay);

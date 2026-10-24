@@ -1,5 +1,3 @@
-// Nutrition values. Depending on context these are per 100 g, per serving or
-// per logged amount — the name of the variable says which.
 export interface Macros {
   kcal: number;
   protein: number;
@@ -30,8 +28,6 @@ export function subtractMacros(a: Macros, b: Macros): Macros {
   };
 }
 
-// Macros for `grams` of a product given its per-100g values, rounded to
-// whole numbers for display and logging.
 export function scaleMacros(per100: Macros, grams: number): Macros {
   const k = grams / 100;
   return {
@@ -42,10 +38,6 @@ export function scaleMacros(per100: Macros, grams: number): Macros {
   };
 }
 
-// Inverse of scaleMacros: per-100g values from macros recorded for `grams`.
-// Kept to one decimal (not whole numbers) so that scaling back to the same
-// weight reproduces the logged values: a 350 g serving of 523 kcal must not
-// turn into 522 kcal when the entry is opened for editing.
 export function per100From(macros: Macros, grams: number): Macros {
   const k = 100 / grams;
   const round1 = (v: number) => Math.round(v * k * 10) / 10;

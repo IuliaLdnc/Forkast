@@ -5,8 +5,6 @@ import { useLang } from '../../../shared/i18n/LanguageContext';
 import { colors, font, radius, shadow, spacing } from '../../../shared/theme';
 import { calorieBudget } from '../../profile/domain/calorieBudget';
 
-// The big green (or orange when over) card with today's calories and macros.
-// Without a target ("just track" mode) it only shows what was eaten.
 export function CalorieCounterCard({
   consumed,
   target,
@@ -17,7 +15,6 @@ export function CalorieCounterCard({
   const { t } = useLang();
   const budget = target ? calorieBudget(consumed, target) : null;
 
-  // Hand-entered macros may be fractional, so sums are rounded for display.
   const eaten = (key: keyof Macros) => Math.round(consumed[key]);
   const macroValue = (key: 'protein' | 'fat' | 'carbs') =>
     target ? `${eaten(key)}/${target[key]}` : t('macro.eatenShort', { n: eaten(key) });

@@ -9,7 +9,6 @@ export interface Section {
   label: UiKey;
 }
 
-// Floating pill switcher between the swipeable top-level sections.
 export function SectionTabs({
   sections,
   active,

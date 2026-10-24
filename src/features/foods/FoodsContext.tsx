@@ -4,11 +4,8 @@ import { builtinFoods } from './data/builtinFoods';
 import { FoodProduct } from './domain/foods';
 
 interface FoodsContextValue {
-  // Products the user created or picked from online search, newest first.
   customFoods: FoodProduct[];
-  // Custom foods followed by the built-in catalogue — what local search scans.
   catalog: FoodProduct[];
-  // Adds a product unless one with the same id is already saved.
   saveCustomFood: (food: FoodProduct) => void;
 }
 

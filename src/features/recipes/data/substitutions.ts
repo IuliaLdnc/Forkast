@@ -1,4 +1,3 @@
-// Interchangeable ingredients: any member of a group can stand in for another.
 export const substitutionGroups: string[][] = [
   ['tomato', 'pepper_bell', 'cucumber', 'zucchini', 'eggplant'],
   ['broccoli', 'cabbage', 'spinach', 'greens'],

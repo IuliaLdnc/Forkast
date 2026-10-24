@@ -10,8 +10,6 @@ import {
 } from 'react-native';
 import { colors, font, spacing } from '../theme';
 
-// Page-sheet modal with a title bar and close button; the body avoids the
-// keyboard. Used for every "add / edit / pick" flow in the app.
 export function SheetModal({
   visible,
   title,

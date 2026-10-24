@@ -9,7 +9,6 @@ import { FoodProduct, foodLabel } from '../../../foods/domain/foods';
 import { Meal } from '../../domain/diary';
 import { MealSelector } from '../MealSelector';
 
-// Step 2: choose how much of the selected product and for which meal.
 export function PortionStep({
   food,
   grams,

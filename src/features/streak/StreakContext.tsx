@@ -13,9 +13,7 @@ import { activeStreak, EMPTY_STREAK, registerLogDay, StreakState } from './domai
 
 interface StreakContextValue {
   streak: number;
-  // Call whenever food is logged; bumps the streak once per day.
   registerLog: () => void;
-  // Milestone reached just now, waiting to be celebrated.
   celebrate: number | null;
   dismissCelebrate: () => void;
 }
@@ -28,8 +26,6 @@ export function StreakProvider({ children }: { children: React.ReactNode }) {
     EMPTY_STREAK,
   );
   const [celebrate, setCelebrate] = useState<number | null>(null);
-  // Re-evaluated when the app returns to the foreground: a streak shown as
-  // alive yesterday may have broken while the app sat in the background.
   const [now, setNow] = useState(() => new Date());
 
   useEffect(() => {
@@ -39,8 +35,6 @@ export function StreakProvider({ children }: { children: React.ReactNode }) {
     return () => sub.remove();
   }, []);
 
-  // registerLog may run several times before a re-render (e.g. two quick
-  // adds), so it reads the latest state from a ref rather than a closure.
   const stateRef = useRef(state);
   useEffect(() => {
     stateRef.current = state;
@@ -52,8 +46,6 @@ export function StreakProvider({ children }: { children: React.ReactNode }) {
     if (next === stateRef.current) return;
     stateRef.current = next;
     setState(next);
-    // Keep `now` in step with the state, or a log made after midnight in a
-    // still-open app would be judged against yesterday's date.
     setNow(date);
     if (milestone) setCelebrate(milestone);
   }, [setState]);

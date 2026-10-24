@@ -11,8 +11,6 @@ export interface FoodProduct {
   name: LocalizedText;
   brand: string;
   per100: Macros;
-  // Optional serving size so a product can be logged by portions
-  // (e.g. "1 cracker = 15 g") instead of weighing every time.
   portion?: Portion;
 }
 
@@ -33,14 +31,12 @@ export function searchFoods(query: string, catalog: FoodProduct[], limit = 14): 
     .slice(0, limit);
 }
 
-// Local results first, then online ones that aren't already listed.
 export function mergeResults(local: FoodProduct[], online: FoodProduct[]): FoodProduct[] {
   const key = (f: FoodProduct) => `${f.name.en}|${f.brand}`;
   const seen = new Set(local.map(key));
   return [...local, ...online.filter(o => !seen.has(key(o)))];
 }
 
-// A user-entered product. Single-language input, so both names are the same.
 export function makeCustomFood(
   idPrefix: string,
   name: string,
@@ -57,7 +53,6 @@ export function makeCustomFood(
   };
 }
 
-// Converts macros entered for one portion of `portionGrams` to per-100g.
 export function per100FromPortion(perPortion: Macros, portionGrams: number): Macros {
   const factor = 100 / portionGrams;
   const round1 = (v: number) => Math.round(v * factor * 10) / 10;

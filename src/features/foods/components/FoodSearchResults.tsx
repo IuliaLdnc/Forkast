@@ -37,7 +37,6 @@ export function FoodSearchResults({
   );
 }
 
-// Dashed "enter it manually" button shown under the search field.
 export function ManualEntryButton({ label, onPress }: { label: string; onPress: () => void }) {
   return (
     <Pressable onPress={onPress} style={styles.manualBtn}>

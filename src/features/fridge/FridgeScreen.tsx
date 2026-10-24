@@ -9,7 +9,6 @@ import { colors, font, radius, shadow, spacing } from '../../shared/theme';
 import { categories, ingredients, IngredientCategory } from './data/ingredients';
 import { useFridge } from './FridgeContext';
 
-// Home tab: mark what's in the fridge, then search recipes for it.
 export function FridgeScreen({ onSearch, insets }: { onSearch: () => void; insets: EdgeInsets }) {
   const { t, tx } = useLang();
   const { selected, toggle, clear } = useFridge();

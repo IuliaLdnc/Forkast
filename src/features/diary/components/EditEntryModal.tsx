@@ -16,8 +16,6 @@ import {
 import { useDiary } from '../DiaryContext';
 import { DiaryEntry, entryGrams, entryPer100 } from '../domain/diary';
 
-// Edits a logged entry. Entries with a per-gram basis are re-weighed; others
-// (e.g. quick kcal logs) get their macros typed in directly.
 export function EditEntryModal({
   entry,
   onClose,

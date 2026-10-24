@@ -8,7 +8,6 @@ import { colors, font, spacing } from '../../../shared/theme';
 import { Activity, Gender, Goal, Profile } from '../domain/targets';
 import { ACTIVITIES, activityLabel, genderLabel, GOALS, goalLabel } from '../labels';
 
-// Plausibility bounds; anything outside is almost certainly a typo.
 export function isValidBody(age: number, height: number, weight: number): boolean {
   return age >= 5 && height >= 80 && weight >= 20;
 }

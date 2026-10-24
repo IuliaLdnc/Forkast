@@ -7,8 +7,6 @@ import { FridgeProvider } from '../features/fridge/FridgeContext';
 import { ProfileProvider } from '../features/profile/ProfileContext';
 import { StreakProvider } from '../features/streak/StreakContext';
 
-// Order matters only where providers depend on each other:
-// DiaryProvider uses the streak, so StreakProvider must wrap it.
 export function AppProviders({ children }: { children: React.ReactNode }) {
   return (
     <SafeAreaProvider>

@@ -5,12 +5,8 @@ import { dayNoun } from '../../../shared/i18n/plural';
 import { colors, font, radius, spacing } from '../../../shared/theme';
 import { useStreak } from '../StreakContext';
 
-// Milestones are usually reached from the "add food" sheet, which closes in
-// the same render. iOS can't present a modal while another one is still
-// sliding away (the new one silently never shows), so wait for that first.
 const SHOW_DELAY_MS = 600;
 
-// Full-screen "wow" when the streak hits a milestone (3, 7, 14… days).
 export function StreakCelebration() {
   const { t, lang } = useLang();
   const { celebrate, dismissCelebrate } = useStreak();

@@ -4,7 +4,6 @@ import { Macros } from '../../core/macros';
 import { useLang } from '../i18n/LanguageContext';
 import { colors, font, radius, spacing } from '../theme';
 
-// Inline "123 kcal  P 10  F 5  C 20  per 100 g" row.
 export function MacroTags({ macros, note }: { macros: Macros; note?: string }) {
   const { t } = useLang();
   return (
@@ -28,7 +27,6 @@ export function MacroTags({ macros, note }: { macros: Macros; note?: string }) {
   );
 }
 
-// Four tinted tiles with large kcal / protein / fat / carbs numbers.
 export function MacroStatGrid({ macros, compact }: { macros: Macros; compact?: boolean }) {
   const { t } = useLang();
   const stats = [
@@ -56,7 +54,6 @@ export function MacroStatGrid({ macros, compact }: { macros: Macros; compact?: b
   );
 }
 
-// "1 cracker = 15 g" plus ×1…×5 shortcuts that set the grams.
 export function PortionPicker({
   portion,
   grams,

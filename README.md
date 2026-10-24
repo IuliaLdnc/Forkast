@@ -1,91 +1,105 @@
 # 🍴 Forkast
 
-**«Что приготовить из того, что есть в холодильнике» + макросы (БЖУ).**
+**Cook from what's in your fridge — and stay on top of your macros.**
 
-Отмечаешь продукты, которые есть дома → Forkast подбирает рецепты, показывает
-процент совпадения, чего не хватает докупить, и раскладывает калории по
-белкам / жирам / углеводам. Совмещает борьбу с пищевыми отходами и контроль
-питания.
+Mark the products you have at home and Forkast finds recipes you can cook
+right now, suggests swaps for missing ingredients, and breaks every serving
+down into calories, protein, fat and carbs. It fights food waste and helps
+you eat to your goal at the same time. Available in English and Russian.
 
-## Экраны
+## Screens
 
-1. **Холодильник** — выбор продуктов по категориям + поиск.
-2. **Рецепты** — подбор по совпадению ингредиентов, фильтры (готов сейчас,
-   много белка, быстро, вегетарианское, лёгкое).
-3. **Рецепт** — пищевая ценность на порцию (ккал + стек-бар БЖУ), список
-   ингредиентов с пометкой «есть / купить / кладовка» и пошаговое
-   приготовление.
-4. **Счётчик** — дневник питания по приёмам пищи, остаток калорий под цель
-   (похудение / поддержание / набор) и серия дней подряд.
+1. **Fridge** — pick products by category or search.
+2. **Recipes** — recipes you can make from your selection, ranked to your goal
+   and the calories left today. Filters: fits my budget, no swaps, high
+   protein, fast, vegetarian, light.
+3. **Recipe** — nutrition per serving (kcal + macro bar), ingredients marked
+   "have / swap / buy / pantry", step-by-step instructions. Ingredients can be
+   removed from the dish or tied to a specific brand, and the serving can be
+   logged to the diary.
+4. **Counter** — food diary by meal, calories left for your goal (cut /
+   maintain / bulk or just tracking), and a daily streak.
 
-## Запуск
+## Getting started
 
 ```sh
-# 1. Запустить Metro (в одном терминале)
+npm install
+
+# 1. Start Metro (in one terminal)
 npm start
 
-# 2. Собрать и открыть приложение (в другом терминале)
-npm run ios       # нужен Xcode + симулятор
-# или
-npm run android   # нужен Android Studio + эмулятор
+# 2. Build and launch the app (in another terminal)
+npm run ios       # requires Xcode + a simulator
+# or
+npm run android   # requires Android Studio + an emulator
 ```
 
-> Для iOS при первом запуске может потребоваться `bundle install` и
-> `bundle exec pod install` в папке `ios/`.
+> On the first iOS run you may need `bundle install` and
+> `bundle exec pod install` in the `ios/` folder.
 
-## Структура
+## Project structure
 
-Код разбит по фичам. Внутри фичи: `domain/` — чистая логика без React
-(покрыта тестами в `__tests__/domain`), `data/` — справочники, `components/`
-и `screens/` — UI, `*Context.tsx` — состояние фичи.
+The code is organised by feature. Inside a feature: `domain/` holds pure
+logic with no React (covered by tests in `__tests__/domain`), `data/` holds
+reference data, `components/` and `screens/` hold UI, and `*Context.tsx`
+holds the feature's state.
 
 ```
-App.tsx                  точка входа → src/app/App
+App.tsx                  entry point → src/app/App
 src/
-  app/                   провайдеры, корневая навигация (пейджер + оверлеи)
-  core/                  Macros и календарные дни — общие типы и математика
+  app/                   providers, root navigation (pager + overlays)
+  core/                  Macros and calendar days — shared types and math
   shared/
-    i18n/                EN/RU строки, LanguageContext, плюрализация
-    theme/               палитра, отступы, тени
-    storage/             usePersistedState — состояние в AsyncStorage
-    ui/                  кнопки, поля ввода, SheetModal, плашки БЖУ
+    i18n/                EN/RU strings, LanguageContext, pluralisation
+    theme/               colours, spacing, shadows
+    storage/             usePersistedState — state backed by AsyncStorage
+    ui/                  buttons, inputs, SheetModal, macro displays
   features/
-    fridge/              выбор продуктов, справочник ингредиентов
-    recipes/             подбор и ранжирование рецептов, экран рецепта
-    foods/               каталог продуктов, поиск (локально + Open Food Facts)
-    diary/               дневник питания за день, добавление/редактирование
-    profile/             анкета, цели КБЖУ, расчёт остатка калорий
-    streak/              серия дней подряд и празднование рубежей
-    counter/             экран счётчика, собирает diary + profile + streak
+    fridge/              product selection, ingredient catalogue
+    recipes/             recipe matching and ranking, recipe screen
+    foods/               food catalogue, search (local + Open Food Facts)
+    diary/               today's food diary, adding and editing entries
+    profile/             profile form, calorie/macro targets, calorie budget
+    streak/              days-in-a-row streak and milestone celebration
+    counter/             counter screen, combines diary + profile + streak
 ```
 
-Зависимости направлены вниз: `app → features → shared → core`. Фичи
-общаются через контексты (`useDiary`, `useProfile`, …), а не через пропсы
-из корня.
+Dependencies point downwards: `app → features → shared → core`. Features
+talk to each other through contexts (`useDiary`, `useProfile`, …) rather than
+props passed down from the root.
 
-## Как считаются макросы
+## How macros are calculated
 
-`macros` в каждом рецепте заданы на **одну порцию** (Б/Ж/У в граммах, ккал).
-Стек-бар БЖУ показывает вклад в калорийность: белки и углеводы — 4 ккал/г,
-жиры — 9 ккал/г. Базовые продукты из «кладовки» (соль, масло, сахар, перец)
-не учитываются при подсчёте совпадения — считается, что они есть всегда.
+Every recipe ingredient has a weight in grams. Recipe macros are the sum of
+its ingredients' per-100 g values (from `recipes/data/nutrition.ts`, or the
+brand the user picked) divided by the number of servings. The macro bar shows
+each macro's share of calories: protein and carbs are 4 kcal/g, fat is
+9 kcal/g. Pantry staples (salt, oil, sugar, pepper) are not counted when
+matching — they are assumed to always be at home.
 
-Рецепты, справочники и вся логика локальные — подбор рецептов работает
-офлайн. В сеть ходит только поиск продуктов для дневника (Open Food Facts),
-и он лишь дополняет локальный каталог. Профиль, дневник, свои продукты, серия
-и язык хранятся на устройстве (AsyncStorage).
+For maintain and bulk, daily targets come from the Mifflin–St Jeor formula
+times an activity factor, scaled for the goal. For a cut, protein, fat and
+carbs are set per kilogram of body weight. Calories that go over the target only because of extra
+protein are not counted as an overshoot.
 
-## Проверки
+## Data and privacy
+
+Recipes, reference data and all logic are local, so recipe matching works
+offline. Only the diary's food search goes online (Open Food Facts), and it
+just supplements the local catalogue. Profile, diary, custom foods, streak and
+language are stored on the device (AsyncStorage).
+
+## Checks
 
 ```sh
-npm test            # jest: доменная логика + целостность справочников
+npm test            # jest: domain logic + data integrity
 npm run lint        # eslint
-npx tsc --noEmit    # типы
+npx tsc --noEmit    # types
 npx prettier --check "src/**/*.{ts,tsx}" "__tests__/**/*.{ts,tsx}"
 ```
 
-## Дальше можно добавить
+## Roadmap
 
-- Пересчёт рецепта на другое число порций.
-- Сохранение избранного и «истории холодильника».
-- Подключение внешнего API рецептов.
+- Scale a recipe to a different number of servings.
+- Favourites and fridge history.
+- Integration with an external recipe API.

@@ -5,7 +5,6 @@ import { colors, font, radius, shadow, spacing } from '../../../shared/theme';
 import { Meal, MEALS } from '../../diary/domain/diary';
 import { mealLabel } from '../../diary/labels';
 
-// "Add to diary" → pick a meal → "Added ✓". One serving per screen visit.
 export function AddToDiaryButton({ onAdd }: { onAdd: (meal: Meal) => void }) {
   const { t } = useLang();
   const [state, setState] = useState<'idle' | 'picking' | 'added'>('idle');

@@ -18,11 +18,6 @@ import { RecipesScreen } from '../features/recipes/screens/RecipesScreen';
 import { StreakCelebration } from '../features/streak/components/StreakCelebration';
 import { Section, SectionTabs } from './SectionTabs';
 
-// Two swipeable sections live side by side: the recipe flow on the left
-// (shown first) and the counter on the right. Recipe results and the recipe
-// detail open as full-screen overlays on top of the pager. The results stay
-// mounted under the detail, so going back keeps their filter and scroll.
-
 const SECTIONS: Section[] = [
   { icon: '🍴', label: 'nav.recipes' },
   { icon: '🔥', label: 'nav.counter' },
@@ -44,8 +39,6 @@ export function RootNavigator() {
     [width],
   );
 
-  // Android back closes the top overlay first (detail → results → pager)
-  // instead of leaving the app.
   useEffect(() => {
     if (!recipesOpen && !detail) return;
     const sub = BackHandler.addEventListener('hardwareBackPress', () => {

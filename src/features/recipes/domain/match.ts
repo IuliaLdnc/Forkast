@@ -6,12 +6,9 @@ export type ItemStatus = 'pantry' | 'have' | 'swap' | 'optional_out' | 'missing'
 
 export interface PlannedItem {
   ingredient: RecipeIngredient;
-  // The ingredient actually used: the original, or the substitute for a swap.
   effectiveId: string;
   status: ItemStatus;
-  // Whether the item goes into the dish (and its macros) by default.
   included: boolean;
-  // For swaps: the original ingredient id being replaced.
   substituteFor?: string;
 }
 
@@ -21,16 +18,12 @@ export interface RecipePlan {
   makeable: boolean;
   swaps: { from: string; to: string }[];
   missing: string[];
-  // Non-pantry ingredients covered by what the user has (incl. swaps).
   haveCount: number;
-  // Non-pantry ingredients in the recipe.
   significant: number;
 }
 
 const isPantry = (id: string) => ingredientById[id]?.pantry === true;
 
-// Works out how a recipe can be cooked from the ingredients the user has:
-// which are present, which can be swapped, and what is missing.
 export function buildPlan(recipe: Recipe, have: Set<string>): RecipePlan {
   const items: PlannedItem[] = [];
   const swaps: { from: string; to: string }[] = [];
@@ -38,8 +31,6 @@ export function buildPlan(recipe: Recipe, have: Set<string>): RecipePlan {
   let haveCount = 0;
   let significant = 0;
 
-  // The main ingredient defines the dish and is never swapped. Use the
-  // explicit `main` flags if any, otherwise the first required ingredient.
   const hasExplicitMain = recipe.ingredients.some(i => i.main);
   let mainLocked = false;
 
@@ -93,8 +84,6 @@ export function buildPlan(recipe: Recipe, have: Set<string>): RecipePlan {
   };
 }
 
-// All recipes planned against `have`: makeable first, then fewest swaps,
-// most ingredients used, and quickest.
 export function matchRecipes(have: Set<string>, catalog: Recipe[] = recipes): RecipePlan[] {
   return catalog
     .map(recipe => buildPlan(recipe, have))

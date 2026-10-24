@@ -31,7 +31,6 @@ export function RecipeDetailScreen({
   const { selected } = useFridge();
   const builder = useRecipeBuilder(recipe, selected);
   const { plan, macros } = builder;
-  // Index of the ingredient whose brand is being picked.
   const [brandIdx, setBrandIdx] = useState<number | null>(null);
   const brandIngredient =
     brandIdx !== null ? ingredientById[plan.items[brandIdx].effectiveId] : undefined;

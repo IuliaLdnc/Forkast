@@ -14,8 +14,6 @@ import { Recipe, tagLabels } from '../data/recipes';
 import { matchRecipes } from '../domain/match';
 import { applyFilter, FILTER_TAGS, rankForGoal, RecipeFilter } from '../domain/ranking';
 
-// Recipes that can be cooked from the fridge, ranked to the user's goal and
-// what's left of today's calories.
 export function RecipesScreen({
   onBack,
   onOpenRecipe,
@@ -31,7 +29,6 @@ export function RecipesScreen({
   const { selected } = useFridge();
   const [filter, setFilter] = useState<RecipeFilter>('all');
 
-  // In "just track" mode there's no target, so recipes aren't ranked to a goal.
   const goal = target && profile ? profile.goal : null;
   const remaining = useMemo(
     () => (target ? subtractMacros(target, consumed) : null),

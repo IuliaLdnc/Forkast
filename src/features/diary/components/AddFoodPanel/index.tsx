@@ -18,8 +18,6 @@ type Step = { name: 'search' } | { name: 'manual' } | { name: 'portion'; food: F
 
 const DEFAULT_GRAMS = '100';
 
-// Sheet for logging a food: search (local + online) or describe it manually,
-// then pick the amount and meal.
 export function AddFoodPanel({
   visible,
   onClose,
@@ -50,7 +48,6 @@ export function AddFoodPanel({
     onClose();
   };
 
-  // A product defaults to one portion when it defines one, otherwise 100 g.
   const selectFood = (food: FoodProduct) => {
     setStep({ name: 'portion', food });
     setGrams(String(food.portion ? food.portion.grams : 100));
@@ -64,7 +61,6 @@ export function AddFoodPanel({
   const confirm = (food: FoodProduct) => {
     const g = Number(grams);
     if (!g) return;
-    // Remember online products so they show up in local search next time.
     if (isOnlineFood(food)) saveCustomFood(food);
     addFood(foodLabel(food, lang), scaleMacros(food.per100, g), meal, {
       grams: g,

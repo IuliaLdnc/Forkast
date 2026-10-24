@@ -6,8 +6,6 @@ import { colors, font, radius, shadow, spacing } from '../../../shared/theme';
 import { DiaryEntry, Meal, totals } from '../domain/diary';
 import { mealLabel, mealStyle } from '../labels';
 
-// One meal of the day: header with totals and "+", and a collapsible list of
-// logged entries (tap to edit, "−" to remove).
 export function MealCard({
   meal,
   items,
@@ -111,7 +109,6 @@ function EntryRow({
   );
 }
 
-// "P 10  F 5  C 20" in macro colors.
 function PfcLine({
   macros,
   big,

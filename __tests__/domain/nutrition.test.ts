@@ -1,5 +1,6 @@
 import { per100From, scaleMacros } from '../../src/core/macros';
 import { calorieBudget } from '../../src/features/profile/domain/calorieBudget';
+import { targetsFor } from '../../src/features/profile/domain/targets';
 import {
   mergeResults,
   per100FromPortion,
@@ -81,5 +82,25 @@ describe('foods', () => {
     });
     expect(toFoodProduct({ product_name: 'No kcal', nutriments: {} })).toBeNull();
     expect(toFoodProduct({ nutriments: { 'energy-kcal_100g': 10 } })).toBeNull();
+  });
+});
+
+describe('targetsFor', () => {
+  const body = { age: 30, height: 165, weight: 100, goal: 'cut' as const };
+
+  it.each([
+    ['low', 160, 80, 100, 1760],
+    ['light', 170, 80, 125, 1900],
+    ['moderate', 175, 80, 150, 2020],
+    ['high', 200, 80, 200, 2320],
+  ] as const)('cuts with %s activity per kg', (activity, protein, fat, carbs, kcal) => {
+    for (const gender of ['male', 'female'] as const) {
+      expect(targetsFor({ ...body, gender, activity }, 'cut')).toEqual({
+        kcal,
+        protein,
+        fat,
+        carbs,
+      });
+    }
   });
 });

@@ -21,19 +21,24 @@ const ACTIVITY_FACTOR: Record<Activity, number> = {
   high: 1.725,
 };
 
-const KCAL_MULTIPLIER: Record<Goal, number> = {
-  cut: 0.8,
+const KCAL_MULTIPLIER: Record<Exclude<Goal, 'cut'>, number> = {
   maintain: 1,
   bulk: 1.15,
 };
 
-const PROTEIN_PER_KG: Record<Goal, number> = {
-  cut: 2.2,
+const PROTEIN_PER_KG: Record<Exclude<Goal, 'cut'>, number> = {
   maintain: 1.8,
   bulk: 2,
 };
 
-const CUT_PER_KG = { protein: 2.2, fat: 0.8, carbs: 1.5 };
+type PerKg = { protein: number; fat: number; carbs: number };
+
+const CUT_PER_KG: Record<Activity, PerKg> = {
+  low: { protein: 1.6, fat: 0.8, carbs: 1.0 },
+  light: { protein: 1.7, fat: 0.8, carbs: 1.25 },
+  moderate: { protein: 1.75, fat: 0.8, carbs: 1.5 },
+  high: { protein: 2.0, fat: 0.8, carbs: 2.0 },
+};
 
 const FAT_KCAL_SHARE = 0.25;
 
@@ -48,9 +53,10 @@ export function maintenanceCalories(profile: Profile): number {
 
 export function targetsFor(profile: Profile, goal: Goal): Macros {
   if (goal === 'cut') {
-    const protein = CUT_PER_KG.protein * profile.weight;
-    const fat = CUT_PER_KG.fat * profile.weight;
-    const carbs = CUT_PER_KG.carbs * profile.weight;
+    const perKg = CUT_PER_KG[profile.activity];
+    const protein = perKg.protein * profile.weight;
+    const fat = perKg.fat * profile.weight;
+    const carbs = perKg.carbs * profile.weight;
     const kcal = protein * 4 + fat * 9 + carbs * 4;
     return {
       kcal: Math.round(kcal),
